@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* Dark mode via class (Tailwind v4) */
+@variant dark (&:is(.dark *));
+
+:root {
+  --background: #f2f2f7;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-border: #e5e5ea;
+  --sidebar: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+.dark {
+  --background: #020617;
+  --foreground: #e2e8f0;
+  --card: #0f172a;
+  --card-border: #1e293b;
+  --sidebar: #0f172a;
+  --nav-bg: rgba(15, 23, 42, 0.95);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* ============================================
+   MODO OLED (Negro Puro)
+   Se activa con <html class="dark oled">
+   ============================================ */
+
+.dark.oled {
+  --background: #000000;
+  --foreground: #e2e8f0;
+  --card: #000000;
+  --card-border: #1a1a1a;
+  --sidebar: #000000;
+  --nav-bg: rgba(0, 0, 0, 0.95);
+}
+
+/* Fondos de tarjetas y contenedores principales */
+.dark.oled :is(.dark\:bg-slate-900),
+.dark.oled :is(.dark\:bg-slate-950),
+.dark.oled :is(.dark\:bg-slate-800) {
+  background-color: #000000 !important;
+}
+
+/* Fondos secundarios (hover, tabs, inputs) */
+.dark.oled :is(.dark\:bg-slate-800\/50),
+.dark.oled :is(.dark\:hover\:bg-slate-800),
+.dark.oled :is(.dark\:hover\:bg-slate-800\/50) {
+  background-color: #0a0a0a !important;
+}
+
+/* Fondos terciarios (badges, tags, sliders) */
+.dark.oled :is(.dark\:bg-slate-700),
+.dark.oled :is(.dark\:bg-slate-700\/80) {
+  background-color: #141414 !important;
+}
+
+/* Bordes */
+.dark.oled :is(.dark\:border-slate-800),
+.dark.oled :is(.dark\:border-slate-700),
+.dark.oled :is(.dark\:divide-slate-800) {
+  border-color: #1a1a1a !important;
+}
+
+/* Hover en filas de listas */
+.dark.oled :is(.dark\:hover\:bg-slate-800\/50):hover {
+  background-color: #0a0a0a !important;
+}
+
+/* Scrollbar en OLED */
+.dark.oled ::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+}
+
+/* ============================================
+   MICRO-INTERACCIONES
+   ============================================ */
+
+/* Destello de éxito para el botón guardar */
+@keyframes flash-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  30% { box-shadow: 0 0 24px 6px rgba(255,255,255,0.35); }
+  100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+.btn-flash-exito {
+  animation: flash-pulse 0.5s ease-out forwards;
+}
+
+/* Inputs y selects */
+.dark.oled :is(.dark\:bg-slate-800):is("input"),
+.dark.oled :is(.dark\:bg-slate-800):is("select"),
+.dark.oled :is(.dark\:bg-slate-800):is("textarea") {
+  background-color: #0a0a0a !important;
+  border-color: #1a1a1a !important;
+}
